@@ -1,0 +1,10 @@
+require 'prime'
+
+mult = {}
+(2..20).each do |q|
+  mult.merge!(q.prime_division.to_h){ |k, h1, h2| h1.nil? ? h2 : (h1 > h2 ? h1 : h2) }
+end
+
+res = 1
+mult.each {|k,v| res *= (k**v) }
+res
