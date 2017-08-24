@@ -1,0 +1,30 @@
+BASICS = [1]
+(1..9).each do |q| 
+  BASICS << BASICS[q-1] * q
+end
+
+def get_next(numb)
+  numb.to_s.each_char.inject(0){ |s,q| s += BASICS[q.to_i] }
+end
+
+def get_chain(numb)
+  chain = [numb]
+  59.times do
+    next_val = get_next(chain.last)
+    return [chain, true] if chain.include?(next_val)
+    chain << next_val
+  end
+  return [chain, false]
+end
+
+# bad part which looks like bruteforce
+res = []
+1000_000.times do |q|
+  qc = get_chain(q)
+  res << q if !qc[1]
+  puts q
+end
+
+res.count
+
+
