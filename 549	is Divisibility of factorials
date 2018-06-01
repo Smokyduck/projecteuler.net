@@ -1,0 +1,13 @@
+n = 100
+sum = 0
+(2..n).each do |q|
+  m = 1
+  f = 1
+
+  begin
+    m += 1 
+    f *= m 
+  end while (f % q) != 0
+  sum += m
+end
+puts sum
