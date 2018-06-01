@@ -1,0 +1,6 @@
+(1..500).inject(1) do |sum, q| 
+  l = (q * 2 + 1) ** 2 
+  sum += l
+  3.times{ l -= q * 2; sum += l }
+  sum
+end
