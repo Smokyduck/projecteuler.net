@@ -1,7 +1,7 @@
 n = 100_000_000
-fact_calculated_for = 1
+fact_calculated_for = 2
 sum = 0
-facts = {1 => 1}
+facts = {2 => 2}
 (2..n).each do |q|
   m = facts.each{ |k, v| break k if (v % q).zero? }
   m = nil if m.is_a?(Hash)
