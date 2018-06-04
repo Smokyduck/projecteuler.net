@@ -1,13 +1,16 @@
-n = 100
+n = 100_000_000
+fact_calculated_for = 1
 sum = 0
+facts = {1 => 1}
 (2..n).each do |q|
-  m = 1
-  f = 1
-
-  begin
-    m += 1 
-    f *= m 
-  end while (f % q) != 0
+  m = facts.each{ |k, v| break k if (v % q).zero? }
+  m = nil if m.is_a?(Hash)
+  while m.nil? do
+    fact_calculated_for += 1
+    facts[fact_calculated_for] = facts[fact_calculated_for-1] * fact_calculated_for
+    m = fact_calculated_for if (facts[fact_calculated_for] % q).zero?
+  end
   sum += m
+  puts "q = #{q} \n#{fact_calculated_for} facts was calculated" if (q % 1000).zero?  
 end
 puts sum
