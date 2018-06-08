@@ -1,14 +1,14 @@
 include Math
 
 def calculate_lattice_points(a, b)
-  (1..a-1).inject(0){ |sum, q| sum += (q.to_f / a * b).to_i }
+  (1..a-1).inject(0){ |sum, q| sum += ((q.to_f / a * b).to_i) }
 end
 
 m = 4
 
-triangles = (1..m).map{ |a| (1..a).map{ |b| {[b, a] => calculate_lattice_points(a, b)} } }.flatten(1).inject(Hash.new, :merge)
+triangles = (1..m).map{ |a| (1..a).map{ |b| { [b, a] => calculate_lattice_points(a, b)} } }.flatten(1).inject(Hash.new, :merge)
 
-puts (squares = (2..sqrt((triangles.values.max + m) * 4 + 1).to_i).map{ |q| q ** 2 }).to_s
+squares = (2..sqrt((triangles.values.max + m) * 4 + 1).to_i).map{ |q| q ** 2 }
 
 res = 0
 
