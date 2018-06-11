@@ -1,18 +1,18 @@
 include Math
 
 def calculate_lattice_points(a, b)
-  (1..a-1).inject(0){ |sum, q| sum += ((q.to_f / a * b).to_i) }
+  (1..a-1).inject(0){ |sum, q| sum += (curr == curr.to_i) ? curr.to_i - 1 : curr.to_i }
 end
 
 m = 4
 
 triangles = (1..m).map{ |a| (1..a).map{ |b| { [b, a] => calculate_lattice_points(a, b)} } }.flatten(1).inject(Hash.new, :merge)
 
-squares = (2..sqrt((triangles.values.max + m) * 4 + 1).to_i).map{ |q| q ** 2 }
+squares = (1..sqrt((triangles.values.max + m) * 4 + 1).to_i).map{ |q| q ** 2 }
 
 res = 0
 
-(1..m).each do |a| 
+(1..m).each do |a|
   (1..m).each do |b|
     (1..m).each do |c|
       (1..m).each do |d|
@@ -20,7 +20,7 @@ res = 0
                                      (triangles[[c, b]] || triangles[[b, c]]) +
                                      (triangles[[c, d]] || triangles[[d, c]]) +
                                      (triangles[[a, d]] || triangles[[d, a]]) +
-                                     a + b + c + d + 1)
+                                     a + b + c + d + 1 - 4)
       end
     end
   end
