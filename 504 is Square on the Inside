@@ -1,7 +1,7 @@
 include Math
 
 def calculate_lattice_points(a, b)
-  (1..a-1).inject(0){ |sum, q| sum += (curr == curr.to_i) ? curr.to_i - 1 : curr.to_i }
+  (1..a-1).inject(0){ |sum, q| curr = (q.to_f / a * b); sum += (curr == curr.to_i) ? curr.to_i - 1 : curr.to_i }
 end
 
 m = 4
