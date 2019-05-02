@@ -1,0 +1,19 @@
+A = {1 => 1}
+
+def nxt(n)
+  a = n.to_s.chars.inject(0){|s, q| s += q.to_i ** 2}
+  return A[a] unless A[a].nil?
+  if a == 1
+    A[n] = 1
+    return 1
+  end
+  if a == 89
+    A[n] = 89
+    return 89
+  end
+  nxt(a)
+end
+
+(1..9_999_999).inject(0){ |s, q|
+  nxt(q) == 89 ? s += 1 : s
+}
