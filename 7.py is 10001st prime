@@ -1,0 +1,28 @@
+primes = [2, 3]
+n = 6
+count = 2
+
+while count <= 10001:
+  t = n - 1
+  flag = 1
+  for i in primes:
+    if t % i == 0:
+      flag = 0
+      break
+  if flag:
+    primes.append(t)
+    count += 1
+
+  t = n + 1
+  flag = 1
+  for i in primes:
+    if t % i == 0:
+      flag = 0
+      break
+  if flag:
+    primes.append(t)
+    count += 1
+
+  n += 6
+
+print(primes[10000])
