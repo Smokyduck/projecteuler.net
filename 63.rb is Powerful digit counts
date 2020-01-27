@@ -1,0 +1,5 @@
+(1..9).inject{ |s, q| 
+  s + (1..21).inject{ |s, n| 
+    (q ** n).to_s.length == n ? s + 1 : s
+  }
+}
